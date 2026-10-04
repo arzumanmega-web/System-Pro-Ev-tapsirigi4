@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -42,7 +42,6 @@ class Program
         Console.CursorVisible = false;
         Console.Clear();
 
-        // Massivin elanı və mənimsədilməsi
         downloads = new DownloadItem[]
         {
             new DownloadItem { Id = 1, Url = "https://proof.ovh.net/files/10Mb.dat", FileName = "mp4_sample_file1_10MB.mp4", ConsoleRow = 10 },
@@ -53,7 +52,6 @@ class Program
 
         DrawHeader();
 
-        // List əvəzinə Task massivi
         Task[] tasks = new Task[downloads.Length];
 
         for (int i = 0; i < downloads.Length; i++)
@@ -209,10 +207,10 @@ class Program
             Console.WriteLine("║                 MULTI-THREAD VIDEO DOWNLOADER                   ║");
             Console.WriteLine("║                                                                 ║");
             Console.WriteLine("╠═════════════════════════════════════════════════════════════════╣");
-            Console.WriteLine("║  1-3  → Downloading                                             ║");
-            Console.WriteLine("║  4+   → Waiting                                                 ║");
+            Console.WriteLine("║  1-3  -> Downloading                                            ║");
+            Console.WriteLine("║  4+   -> Waiting                                                ║");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("║  ESC  → Cancel ALL                                              ║\n");
+            Console.Write("║  ESC  -> Cancel ALL                                             ║\n");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("╚═════════════════════════════════════════════════════════════════╝");
             Console.ResetColor();
@@ -223,9 +221,9 @@ class Program
     {
         lock (consoleLock)
         {
-            int active = downloads.Count(d => d.Status == "Downloading");
-            int waiting = downloads.Count(d => d.Status == "Waiting");
-            int completed = downloads.Count(d => d.Status == "Completed");
+            int active = downloads.Count(d => d.Status == "Yuklenir");
+            int waiting = downloads.Count(d => d.Status == "Gozleyir");
+            int completed = downloads.Count(d => d.Status == "Tamamlandi");
             int error = downloads.Count(d => d.Status == "Error" || d.Status == "Canceled");
 
             Console.SetCursorPosition(0, 22);
